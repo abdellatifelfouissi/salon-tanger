@@ -1,41 +1,78 @@
-
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>صالون طنجة</title>
+<title>Catalogue Salons - Tanger</title>
 <style>
-body{margin:0;font-family:sans-serif;background:#fff8f0;text-align:center}
-.hero{padding:50px 20px;background:#111;color:white}
-.hero h1{font-size:32px;margin-bottom:10px}
-.hero p{color:#ddd}
-.btn{display:block;margin:15px auto;padding:18px;width:85%;max-width:400px;border-radius:15px;font-size:20px;font-weight:bold;text-decoration:none}
+body{margin:0;font-family:sans-serif;background:#111;text-align:center;color:white}
+.hero{padding:60px 20px}
+.hero h1{font-size:32px}
+.hero p{color:#ccc;margin-bottom:30px}
+.btn{display:block;margin:15px auto;padding:20px;width:85%;max-width:400px;border-radius:15px;font-size:21px;font-weight:bold;text-decoration:none}
 .btn-catalog{background:#d4a017;color:white}
-.btn-maps{background:white;color:#111;border:2px solid #111}
-.catalog{padding:20px}
-.card{background:white;padding:15px;margin:15px auto;max-width:400px;border-radius:15px;box-shadow:0 2px 10px #ddd}
+.btn-maps{background:white;color:#111}
+#catalog{display:none;padding:20px;background:#fff8f0;color:#111}
+.card{background:white;padding:20px;margin:15px auto;max-width:400px;border-radius:15px;box-shadow:0 2px 10px #ddd;text-align:center}
+.card h3{margin:0 0 5px;font-size:22px}
+.card p{color:#555;margin:5px 0}
+.wa{display:block;margin-top:15px;padding:14px;background:#25D366;color:white;border-radius:10px;font-weight:bold;text-decoration:none;font-size:18px}
 </style>
 </head>
 <body>
+
 <div class="hero">
-<h1>💈 صالون طنجة</h1>
+<h1>💈 Catalogue Salons - Tanger</h1>
 <p>مرحبا بيك، شنو بغيتي؟</p>
-<a class="btn btn-catalog" href="#catalog">📖 رؤية الكتالوغ</a>
-<a class="btn btn-maps" href="https://www.google.com/maps/search/?api=1&query=Tanger" target="_blank">📍 الموقع في Google Maps</a>
+<a class="btn btn-catalog" href="#" onclick="showCatalog()">📖 Voir le catalogue - رؤية الكتالوغ</a>
+<a class="btn btn-maps" href="https://www.google.com/maps/search/?api=1&query=salons+beauté+Tanger" target="_blank">📍 Google Maps</a>
 </div>
-<div id="catalog" class="catalog">
-<h2>الكتالوغ ديالنا</h2>
+
+<div id="catalog">
+<h2>الصالونات ديال طنجة</h2>
+
 <div class="card">
-<h3>✂️ قص الشعر</h3>
-<p>الثمن: 100 درهم</p>
-<a href="https://wa.me/212600000000">احجز في واتساب</a>
+<h3>Lady’s Only</h3>
+<p>📍 8 Rue El Kindi, Tanger - 100% Femme</p>
+<p>Coiffure, Esthétique, Manucure, Spa</p>
+<a class="wa" href="https://wa.me/212669572229?text=Bonjour%2C%20je%20veux%20réserver%20chez%20Lady's%20Only">💬 Contacter sur WhatsApp</a>
 </div>
+
 <div class="card">
-<h3>🧔 اللحية</h3>
-<p>الثمن: 50 درهم</p>
-<a href="https://wa.me/212600000000">احجز في واتساب</a>
+<h3>Salon Selen Beauty</h3>
+<p>📍 Immeuble Venezuela, Tanger</p>
+<p>Coiffure, Esthétique & Ongles - Pour Femmes</p>
+<a class="wa" href="https://wa.me/212600000000?text=Bonjour%2C%20je%20veux%20réserver%20chez%20Selen%20Beauty">💬 Contacter sur WhatsApp</a>
 </div>
+
+<div class="card">
+<h3>Centre AZ de Beauté</h3>
+<p>📍 Centre-ville, Tanger</p>
+<p>Manucure, Pédicure, Massage, Épilation</p>
+<a class="wa" href="https://wa.me/212600000000?text=Bonjour%2C%20je%20veux%20réserver%20chez%20Centre%20AZ">💬 Contacter sur WhatsApp</a>
 </div>
+
+<div class="card">
+<h3>Lil'Expert Paris</h3>
+<p>📍 14 Rue Gibraltar, Tanger</p>
+<p>Lissage, Extension cheveux, Ongles</p>
+<a class="wa" href="https://wa.me/212600000000?text=Bonjour%2C%20je%20veux%20réserver%20chez%20LilExpert">💬 Contacter sur WhatsApp</a>
+</div>
+
+<div class="card">
+<h3>Vintage Barber Shop</h3>
+<p>📍 Avenue Abi Jarir Attabari, Tanger</p>
+<p>Coiffure Homme, Barbe, Soins Homme</p>
+<a class="wa" href="https://wa.me/212636818006?text=Bonjour%2C%20je%20veux%20réserver%20chez%20Vintage%20Barber">💬 Contacter sur WhatsApp</a>
+</div>
+
+</div>
+
+<script>
+function showCatalog(){
+  document.getElementById('catalog').style.display='block';
+  window.scrollTo(0, document.getElementById('catalog').offsetTop);
+}
+</script>
 </body>
 </html>

@@ -64,7 +64,28 @@ body{margin:0;font-family:sans-serif;background:#111;color:white;text-align:cent
 </div>
 
 <div class="card">
-<div class="salon-img"><img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=800&q=80"></div>
+<div id="gallery"></div>
+
+<script>
+async function loadImages() {
+  const gallery = document.getElementById('gallery');
+  const res = await fetch('https://api.github.com/repos/abdellatifelfouissi/salon-tanger/contents/images');
+  const files = await res.json();
+  gallery.innerHTML = '';
+  files.reverse().forEach(file => {
+    if (file.name.match(/\.(jpg|jpeg|png|webp)$/i)) {
+      gallery.innerHTML += `
+      <div class="card">
+        <div class="salon-img"><img src="${file.download_url}"></div>
+        <h3>Salonat - Tanger</h3>
+        <p>0610845988</p>
+        <a class="wa" href="https://wa.me/21261084598">WhatsApp</a>
+      </div>`;
+    }
+  });
+}
+loadImages();
+</script>
 <h3>Salon Marocain Vert</h3>
 <p>Sdadir + Mkhadat</p>
 <a class="wa" href="https://wa.me/212610845988?text=Bonjour%2C%20bghit%20Salon%20Marocain%20Vert">💬 Commander sur WhatsApp</a>

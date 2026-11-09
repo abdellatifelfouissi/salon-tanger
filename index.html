@@ -1,57 +1,78 @@
  <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Salonat - Tanger</title>
+<title>Salon Tanger | Catalogue Professionnel</title>
 <style>
-body{margin:0;font-family:sans-serif;background:#111;color:white;text-align:center}
-.top{padding:25px 15px}
-.top h1{font-size:24px;margin:0}
-.top p{color:#ccc;font-size:14px}
-.btn{display:block;margin:12px auto;padding:16px;width:85%;max-width:380px;border-radius:14px;font-size:19px;font-weight:bold;text-decoration:none}
-.btn-catalog{background:#d4a017;color:white}
-.btn-maps{background:white;color:#111}
-#catalog{padding:15px;background:#fff8f0;color:#111;min-height:300px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.card{background:white;padding:10px;border-radius:12px;box-shadow:0 2px 8px #ddd}
-.card img{width:100%;height:140px;object-fit:cover;border-radius:10px}
-.card h3{margin:8px 0 3px;font-size:15px}
-.card p{font-size:12px;color:#777;margin:0}
-.wa{display:block;margin-top:8px;padding:9px;background:#25D366;color:white;border-radius:8px;font-weight:bold;text-decoration:none;font-size:13px}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif}
+body{background:#0f0f0f;color:#fff}
+header{
+  min-height:92vh;
+  background:linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.85)), url('https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=1200') center/cover;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px
+}
+.badge{background:#c9a24b;color:#000;padding:7px 16px;border-radius:50px;font-weight:700;font-size:13px;letter-spacing:1px}
+h1{font-size:42px;margin:18px 0 8px;line-height:1.1}
+h1 span{color:#c9a24b}
+p.sub{color:#ddd;max-width:520px;line-height:1.6;font-size:16px}
+.btns{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap;justify-content:center}
+.btn{padding:14px 26px;border-radius:50px;text-decoration:none;font-weight:700;font-size:15px}
+.btn-gold{background:#c9a24b;color:#000}
+.btn-white{background:#fff;color:#000;display:flex;align-items:center;gap:8px}
+section{max-width:1100px;margin:auto;padding:35px 16px 60px}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.top h2{font-size:26px}
+.top span{color:#c9a24b;font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}
+.card{background:#1a1a1a;border:1px solid #2a2a2a;border-radius:18px;overflow:hidden}
+.card img,.card video{width:100%;height:300px;object-fit:cover;display:block;background:#000}
+.info{padding:15px}
+.info h3{font-size:18px;margin-bottom:4px}
+.info p{color:#aaa;font-size:14px;margin-bottom:12px}
+.phone{display:flex;align-items:center;justify-content:center;gap:8px;background:#c9a24b;color:#000;text-decoration:none;padding:11px;border-radius:12px;font-weight:800}
+.empty{text-align:center;color:#aaa;padding:40px}
+footer{text-align:center;color:#777;padding:20px;font-size:13px;border-top:1px solid #222}
 </style>
 </head>
 <body>
 
-<div class="top">
-<h1>🛋️ Salonat - Tanger</h1>
-<p>سدادر و صالونات على حسب الطلب</p>
-<a class="btn btn-catalog" href="#catalog">📖 Voir le catalogue</a>
-<a class="btn btn-maps" href="https://www.google.com/maps/search/?api=1&query=Salonat+Tanger" target="_blank">📍 Google Maps</a>
-</div>
+<header>
+  <div class="badge">✦ SALON PROFESSIONNEL - TANGER ✦</div>
+  <h1>Catalogue <span>Premium</span><br>Salon Tanger</h1>
+  <p class="sub">Découvrez nos dernières créations. Chaque modèle est disponible sur mesure. Contactez-nous directement.</p>
+  <div class="btns">
+    <a class="btn btn-gold" href="#catalogue">Voir le Catalogue ↓</a>
+    <a class="btn btn-white" href="https://maps.google.com/?q=Tanger" target="_blank">📍 Google Maps</a>
+  </div>
+</header>
 
-<div id="catalog">
-<h2>Catalogue</h2>
-<div class="grid" id="grid"></div>
-<p id="empty" style="display:none">باقي ما كاين حتى تصويرة، سيفط لينا فتيليغرام</p>
-</div>
+<section id="catalogue">
+  <div class="top"><h2>Nos Créations</h2><span id="count"></span></div>
+  <div class="grid" id="grid"></div>
+  <div class="empty" id="empty" style="display:none">Aucune création pour le moment.</div>
+</section>
+
+<footer>Salon Tanger • Tél: 0610845988 • © 2026</footer>
 
 <script>
 async function load(){
   try{
-    const res = await fetch('catalog.json?t='+Date.now());
-    const data = await res.json();
+    const r = await fetch('catalog.json?v='+Date.now());
+    const data = await r.json();
     const grid = document.getElementById('grid');
-    if(!data.length){ document.getElementById('empty').style.display='block'; return; }
-    grid.innerHTML = data.map(item => `
-      <div class="card">
-        <img src="${item.image}">
-        <h3>${item.title}</h3>
-        <p>${item.price || ''}</p>
-        <a class="wa" href="https://wa.me/212610845988?text=${encodeURIComponent('Bonjour, bghit '+item.title)}">💬 Commander</a>
-      </div>
-    `).join('');
-  }catch(e){ document.getElementById('empty').style.display='block'; }
+    document.getElementById('count').textContent = data.length + ' modèles';
+    if(!data.length){document.getElementById('empty').style.display='block';return;}
+    grid.innerHTML = data.map(item=>{
+      const media = item.type === 'video'
+        ? `<video src="${item.image}" controls playsinline></video>`
+        : `<img src="${item.image}" alt="${item.title}">`;
+      return `<div class="card">${media}
+        <div class="info"><h3>${item.title}</h3><p>${item.price || 'Sur Mesure'}</p>
+        <a class="phone" href="tel:0610845988">📞 0610845988</a>
+        </div></div>`;
+    }).join('');
+  }catch(e){document.getElementById('empty').style.display='block';}
 }
 load();
 </script>
